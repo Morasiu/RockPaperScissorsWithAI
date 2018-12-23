@@ -1,4 +1,4 @@
-namespace RPC {
+namespace RPS {
     public class Round {
         public Pick HumanPick { get; set; }
 

@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace RPC {
-    public class RPCGame {
+namespace RPS {
+    public class RPSGame {
         #region Public contructors
 
-        public RPCGame(){
+        public RPSGame(){
             score = new Score();
             rounds = new List<Round>();
             currentRound = new Round();

@@ -1,4 +1,4 @@
-namespace RPC {
+namespace RPS {
     public enum Pick {
         Rock,
         Paper,

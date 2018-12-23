@@ -1,4 +1,4 @@
-namespace RPC {
+namespace RPS {
     public class Score {
         public ushort HumanScore { get ; set; }
 

@@ -1,4 +1,4 @@
-namespace RPC {
+namespace RPS {
     class PickTimes {
         internal Pick Pick {get; set; }
 
