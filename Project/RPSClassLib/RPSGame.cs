@@ -136,7 +136,7 @@ namespace RPS {
             Pick firstRoundPick;
             var random = new Random();
             var chance = random.Next(1, 101);
-            // People mostly use rock or paper as first pick, so this is a counter
+            // People mostly use rock or paper as first pick, so this is a counter for that.
             if (chance <= 40)
                 firstRoundPick = Pick.Paper;
             else if (chance > 40 && chance <= 70)
