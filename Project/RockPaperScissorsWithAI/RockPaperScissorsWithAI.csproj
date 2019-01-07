@@ -82,5 +82,11 @@
   <ItemGroup>
     <None Include="Images\paper.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RPSClassLib\RPSClassLib.csproj">
+      <Project>{9271d330-37b3-4c71-9d30-3b90f0b5df0d}</Project>
+      <Name>RPSClassLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
