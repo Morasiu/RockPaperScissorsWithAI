@@ -88,5 +88,26 @@
       <Name>RPSClassLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Computerwins.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\PlayerWins.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\rock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\scissors.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\tie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\youlost.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\youwin.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

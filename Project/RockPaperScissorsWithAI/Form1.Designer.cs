@@ -28,107 +28,76 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.PlayerPictureBox = new System.Windows.Forms.PictureBox();
-            this.ButtonStartReset = new System.Windows.Forms.Button();
-            this.EndRoundPicture = new System.Windows.Forms.PictureBox();
-            this.Rock = new System.Windows.Forms.Button();
-            this.Paper = new System.Windows.Forms.Button();
-            this.Scissors = new System.Windows.Forms.Button();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.StartButton = new System.Windows.Forms.Button();
+            this.RockButton = new System.Windows.Forms.Button();
+            this.PaperButton = new System.Windows.Forms.Button();
+            this.ScissorsButton = new System.Windows.Forms.Button();
             this.PlayerScoreText = new System.Windows.Forms.Label();
             this.PlayerScorePanel = new System.Windows.Forms.Panel();
-            this.ComputerScorePanel = new System.Windows.Forms.Panel();
-            this.ComputerScoreText = new System.Windows.Forms.Label();
             this.HumanScore = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ComputerScorePanel = new System.Windows.Forms.Panel();
+            this.ComputerScore = new System.Windows.Forms.Label();
+            this.ComputerScoreText = new System.Windows.Forms.Label();
             this.RoundCounterPanel = new System.Windows.Forms.Panel();
             this.RoundCounter = new System.Windows.Forms.Label();
             this.RoundCounterText = new System.Windows.Forms.Label();
-            this.EndGamePicture = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.PlayerPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EndRoundPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.PlayerPanel = new System.Windows.Forms.Panel();
+            this.ComputerPanel = new System.Windows.Forms.Panel();
+            this.ResetButton = new System.Windows.Forms.Button();
+            this.PlayerPictureBox = new System.Windows.Forms.PictureBox();
+            this.ComputerPictureBox = new System.Windows.Forms.PictureBox();
             this.PlayerScorePanel.SuspendLayout();
             this.ComputerScorePanel.SuspendLayout();
             this.RoundCounterPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EndGamePicture)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.PlayerPanel.SuspendLayout();
+            this.ComputerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayerPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComputerPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // PlayerPictureBox
+            // StartButton
             // 
-            this.PlayerPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PlayerPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.PlayerPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.PlayerPictureBox.Location = new System.Drawing.Point(16, 85);
-            this.PlayerPictureBox.Name = "PlayerPictureBox";
-            this.PlayerPictureBox.Size = new System.Drawing.Size(220, 192);
-            this.PlayerPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PlayerPictureBox.TabIndex = 0;
-            this.PlayerPictureBox.TabStop = false;
+            this.StartButton.Font = new System.Drawing.Font("Lato", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StartButton.Location = new System.Drawing.Point(230, 12);
+            this.StartButton.Name = "StartButton";
+            this.StartButton.Size = new System.Drawing.Size(117, 39);
+            this.StartButton.TabIndex = 1;
+            this.StartButton.Text = "START";
+            this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.Click += new System.EventHandler(this.ButtonStart_Click);
             // 
-            // ButtonStartReset
+            // RockButton
             // 
-            this.ButtonStartReset.Font = new System.Drawing.Font("Lato", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonStartReset.Location = new System.Drawing.Point(230, 12);
-            this.ButtonStartReset.Name = "ButtonStartReset";
-            this.ButtonStartReset.Size = new System.Drawing.Size(117, 39);
-            this.ButtonStartReset.TabIndex = 1;
-            this.ButtonStartReset.Text = "START";
-            this.ButtonStartReset.UseVisualStyleBackColor = true;
+            this.RockButton.Enabled = false;
+            this.RockButton.Location = new System.Drawing.Point(12, 361);
+            this.RockButton.Name = "RockButton";
+            this.RockButton.Size = new System.Drawing.Size(72, 77);
+            this.RockButton.TabIndex = 4;
+            this.RockButton.Text = "ROCK";
+            this.RockButton.UseVisualStyleBackColor = true;
+            this.RockButton.Click += new System.EventHandler(this.RockButton_Click);
             // 
-            // EndRoundPicture
+            // PaperButton
             // 
-            this.EndRoundPicture.BackColor = System.Drawing.Color.Transparent;
-            this.EndRoundPicture.Location = new System.Drawing.Point(105, 114);
-            this.EndRoundPicture.Name = "EndRoundPicture";
-            this.EndRoundPicture.Size = new System.Drawing.Size(362, 135);
-            this.EndRoundPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EndRoundPicture.TabIndex = 3;
-            this.EndRoundPicture.TabStop = false;
-            this.EndRoundPicture.Visible = false;
+            this.PaperButton.Enabled = false;
+            this.PaperButton.Location = new System.Drawing.Point(91, 361);
+            this.PaperButton.Name = "PaperButton";
+            this.PaperButton.Size = new System.Drawing.Size(72, 77);
+            this.PaperButton.TabIndex = 5;
+            this.PaperButton.Text = "PAPER";
+            this.PaperButton.UseVisualStyleBackColor = true;
+            this.PaperButton.Click += new System.EventHandler(this.PaperButton_Click);
             // 
-            // Rock
+            // ScissorsButton
             // 
-            this.Rock.Location = new System.Drawing.Point(12, 361);
-            this.Rock.Name = "Rock";
-            this.Rock.Size = new System.Drawing.Size(72, 77);
-            this.Rock.TabIndex = 4;
-            this.Rock.Text = "ROCK";
-            this.Rock.UseVisualStyleBackColor = true;
-            // 
-            // Paper
-            // 
-            this.Paper.Location = new System.Drawing.Point(91, 361);
-            this.Paper.Name = "Paper";
-            this.Paper.Size = new System.Drawing.Size(72, 77);
-            this.Paper.TabIndex = 5;
-            this.Paper.Text = "PAPER";
-            this.Paper.UseVisualStyleBackColor = true;
-            // 
-            // Scissors
-            // 
-            this.Scissors.Location = new System.Drawing.Point(170, 361);
-            this.Scissors.Name = "Scissors";
-            this.Scissors.Size = new System.Drawing.Size(70, 77);
-            this.Scissors.TabIndex = 6;
-            this.Scissors.Text = "SCISSORS";
-            this.Scissors.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox5.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(220, 192);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 7;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
+            this.ScissorsButton.Enabled = false;
+            this.ScissorsButton.Location = new System.Drawing.Point(170, 361);
+            this.ScissorsButton.Name = "ScissorsButton";
+            this.ScissorsButton.Size = new System.Drawing.Size(70, 77);
+            this.ScissorsButton.TabIndex = 6;
+            this.ScissorsButton.Text = "SCISSORS";
+            this.ScissorsButton.UseVisualStyleBackColor = true;
+            this.ScissorsButton.Click += new System.EventHandler(this.ScissorsButton_Click);
             // 
             // PlayerScoreText
             // 
@@ -139,7 +108,6 @@
             this.PlayerScoreText.TabIndex = 8;
             this.PlayerScoreText.Text = "PLAYER SCORE:";
             this.PlayerScoreText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.PlayerScoreText.Click += new System.EventHandler(this.label1_Click);
             // 
             // PlayerScorePanel
             // 
@@ -151,15 +119,35 @@
             this.PlayerScorePanel.Size = new System.Drawing.Size(225, 54);
             this.PlayerScorePanel.TabIndex = 9;
             // 
+            // HumanScore
+            // 
+            this.HumanScore.Font = new System.Drawing.Font("Lato", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HumanScore.Location = new System.Drawing.Point(129, 11);
+            this.HumanScore.Name = "HumanScore";
+            this.HumanScore.Size = new System.Drawing.Size(29, 30);
+            this.HumanScore.TabIndex = 9;
+            this.HumanScore.Text = "0";
+            this.HumanScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // ComputerScorePanel
             // 
             this.ComputerScorePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ComputerScorePanel.Controls.Add(this.label1);
+            this.ComputerScorePanel.Controls.Add(this.ComputerScore);
             this.ComputerScorePanel.Controls.Add(this.ComputerScoreText);
             this.ComputerScorePanel.Location = new System.Drawing.Point(341, 301);
             this.ComputerScorePanel.Name = "ComputerScorePanel";
             this.ComputerScorePanel.Size = new System.Drawing.Size(225, 54);
             this.ComputerScorePanel.TabIndex = 10;
+            // 
+            // ComputerScore
+            // 
+            this.ComputerScore.Font = new System.Drawing.Font("Lato", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComputerScore.Location = new System.Drawing.Point(157, 11);
+            this.ComputerScore.Name = "ComputerScore";
+            this.ComputerScore.Size = new System.Drawing.Size(29, 30);
+            this.ComputerScore.TabIndex = 10;
+            this.ComputerScore.Text = "0";
+            this.ComputerScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ComputerScoreText
             // 
@@ -171,27 +159,6 @@
             this.ComputerScoreText.Text = "COMPUTER SCORE:";
             this.ComputerScoreText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // HumanScore
-            // 
-            this.HumanScore.Font = new System.Drawing.Font("Lato", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HumanScore.Location = new System.Drawing.Point(129, 11);
-            this.HumanScore.Name = "HumanScore";
-            this.HumanScore.Size = new System.Drawing.Size(29, 30);
-            this.HumanScore.TabIndex = 9;
-            this.HumanScore.Text = "0";
-            this.HumanScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.HumanScore.Click += new System.EventHandler(this.HumanScore_Click);
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Lato", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(157, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 30);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "0";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // RoundCounterPanel
             // 
             this.RoundCounterPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -201,7 +168,6 @@
             this.RoundCounterPanel.Name = "RoundCounterPanel";
             this.RoundCounterPanel.Size = new System.Drawing.Size(225, 54);
             this.RoundCounterPanel.TabIndex = 11;
-            this.RoundCounterPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.RoundCounterPanel_Paint);
             // 
             // RoundCounter
             // 
@@ -223,90 +189,106 @@
             this.RoundCounterText.Text = "ROUND:";
             this.RoundCounterText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // EndGamePicture
+            // PlayerPanel
             // 
-            this.EndGamePicture.BackColor = System.Drawing.Color.Transparent;
-            this.EndGamePicture.Location = new System.Drawing.Point(70, 95);
-            this.EndGamePicture.Name = "EndGamePicture";
-            this.EndGamePicture.Size = new System.Drawing.Size(433, 172);
-            this.EndGamePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EndGamePicture.TabIndex = 12;
-            this.EndGamePicture.TabStop = false;
-            this.EndGamePicture.Visible = false;
+            this.PlayerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PlayerPanel.Controls.Add(this.PlayerPictureBox);
+            this.PlayerPanel.Location = new System.Drawing.Point(12, 81);
+            this.PlayerPanel.Name = "PlayerPanel";
+            this.PlayerPanel.Size = new System.Drawing.Size(228, 200);
+            this.PlayerPanel.TabIndex = 10;
             // 
-            // panel1
+            // ComputerPanel
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(12, 81);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(228, 200);
-            this.panel1.TabIndex = 10;
+            this.ComputerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ComputerPanel.Controls.Add(this.ComputerPictureBox);
+            this.ComputerPanel.Location = new System.Drawing.Point(341, 81);
+            this.ComputerPanel.Name = "ComputerPanel";
+            this.ComputerPanel.Size = new System.Drawing.Size(228, 200);
+            this.ComputerPanel.TabIndex = 11;
             // 
-            // panel2
+            // ResetButton
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.pictureBox5);
-            this.panel2.Location = new System.Drawing.Point(341, 81);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(228, 200);
-            this.panel2.TabIndex = 11;
+            this.ResetButton.Font = new System.Drawing.Font("Lato", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResetButton.Location = new System.Drawing.Point(230, 12);
+            this.ResetButton.Name = "ResetButton";
+            this.ResetButton.Size = new System.Drawing.Size(117, 39);
+            this.ResetButton.TabIndex = 12;
+            this.ResetButton.Text = "RESTART";
+            this.ResetButton.UseVisualStyleBackColor = true;
+            this.ResetButton.Visible = false;
+            // 
+            // PlayerPictureBox
+            // 
+            this.PlayerPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PlayerPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.PlayerPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.PlayerPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.PlayerPictureBox.Name = "PlayerPictureBox";
+            this.PlayerPictureBox.Size = new System.Drawing.Size(220, 192);
+            this.PlayerPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PlayerPictureBox.TabIndex = 0;
+            this.PlayerPictureBox.TabStop = false;
+            // 
+            // ComputerPictureBox
+            // 
+            this.ComputerPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.ComputerPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.ComputerPictureBox.Name = "ComputerPictureBox";
+            this.ComputerPictureBox.Size = new System.Drawing.Size(220, 192);
+            this.ComputerPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ComputerPictureBox.TabIndex = 7;
+            this.ComputerPictureBox.TabStop = false;
             // 
             // RockPaperScissors
             // 
             this.ClientSize = new System.Drawing.Size(581, 450);
-            this.Controls.Add(this.EndRoundPicture);
-            this.Controls.Add(this.EndGamePicture);
+            this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.RoundCounterPanel);
             this.Controls.Add(this.ComputerScorePanel);
-            this.Controls.Add(this.Scissors);
-            this.Controls.Add(this.Paper);
-            this.Controls.Add(this.Rock);
-            this.Controls.Add(this.ButtonStartReset);
-            this.Controls.Add(this.PlayerPictureBox);
+            this.Controls.Add(this.ScissorsButton);
+            this.Controls.Add(this.PaperButton);
+            this.Controls.Add(this.RockButton);
+            this.Controls.Add(this.StartButton);
             this.Controls.Add(this.PlayerScorePanel);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.PlayerPanel);
+            this.Controls.Add(this.ComputerPanel);
             this.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Name = "RockPaperScissors";
             this.Text = "Rock, Paper, Scissors";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.PlayerPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EndRoundPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.PlayerScorePanel.ResumeLayout(false);
             this.ComputerScorePanel.ResumeLayout(false);
             this.RoundCounterPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.EndGamePicture)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.PlayerPanel.ResumeLayout(false);
+            this.ComputerPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PlayerPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComputerPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button start;
+                
         private System.Windows.Forms.PictureBox PlayerPictureBox;
-        private System.Windows.Forms.Button ButtonStartReset;
-        private System.Windows.Forms.PictureBox EndRoundPicture;
-        private System.Windows.Forms.Button Rock;
-        private System.Windows.Forms.Button Paper;
-        private System.Windows.Forms.Button Scissors;
-        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Button StartButton;
+        private System.Windows.Forms.Button RockButton;
+        private System.Windows.Forms.Button PaperButton;
+        private System.Windows.Forms.Button ScissorsButton;
+        private System.Windows.Forms.PictureBox ComputerPictureBox;
         private System.Windows.Forms.Label PlayerScoreText;
         private System.Windows.Forms.Panel PlayerScorePanel;
         private System.Windows.Forms.Label HumanScore;
         private System.Windows.Forms.Panel ComputerScorePanel;
         private System.Windows.Forms.Label ComputerScoreText;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label ComputerScore;
         private System.Windows.Forms.Panel RoundCounterPanel;
         private System.Windows.Forms.Label RoundCounter;
         private System.Windows.Forms.Label RoundCounterText;
-        private System.Windows.Forms.PictureBox EndGamePicture;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel PlayerPanel;
+        private System.Windows.Forms.Panel ComputerPanel;
+        private System.Windows.Forms.Button ResetButton;
     }
 }
 
