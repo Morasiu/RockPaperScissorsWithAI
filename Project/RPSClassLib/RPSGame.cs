@@ -56,7 +56,7 @@ namespace RPS {
             }
             currentRound.ComputerPick = computerPick;
             currentRound.HumanPick = playerPick;
-
+            RoundEnd();
             return computerPick;
         }
 
@@ -74,7 +74,7 @@ namespace RPS {
 
         #region Private methods
 
-        public void RoundEnd(){
+        private void RoundEnd(){
             if (currentRound.HumanPick == GetWinningPick(currentRound.ComputerPick))
                 score.HumanScore++;
             else if (currentRound.ComputerPick == GetWinningPick(currentRound.HumanPick))
