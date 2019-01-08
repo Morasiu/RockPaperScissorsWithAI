@@ -32,7 +32,7 @@ namespace RPS {
 
             Pick computerPick = Pick.Paper;
             // First round
-            if (Rounds.Count == 0) {
+            if (rounds.Count == 0) {
                 computerPick = GetFirstRoundPick ();
             } else {
                 var playerPicks = rounds
@@ -91,7 +91,7 @@ namespace RPS {
                 winner = Player.Human;
             }
 
-            Rounds.Add (currentRound);
+            rounds.Add (currentRound);
             currentRound = new Round ();
         }
 
