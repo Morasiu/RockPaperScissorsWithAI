@@ -1,15 +1,15 @@
-﻿using System;
-using System.Linq;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RPS {
     public class RPSGame {
         #region Public contructors
 
-        public RPSGame(){
-            score = new Score();
-            rounds = new List<Round>();
-            currentRound = new Round();
+        public RPSGame () {
+            score = new Score ();
+            rounds = new List<Round> ();
+            currentRound = new Round ();
         }
 
         #endregion
@@ -26,37 +26,37 @@ namespace RPS {
 
         #region Public methods
 
-        public Pick GetComputerPick(Pick playerPick) {
-            if(isGameOver)
-                throw new ApplicationException("Game is over");
+        public Pick GetComputerPick (Pick playerPick) {
+            if (isGameOver)
+                throw new ApplicationException ("Game is over");
 
-            Pick computerPick = Pick.Paper; 
+            Pick computerPick = Pick.Paper;
             // First round
             if (Rounds.Count == 0) {
-                computerPick = GetFirstRoundPick();
-            } else  {
+                computerPick = GetFirstRoundPick ();
+            } else {
                 var playerPicks = rounds
-                            .Select(pick => pick.HumanPick)
-                            .GroupBy(g => g)
-                            .Select(g => new PickTimes() {
-                                Pick = g.Key,
-                                Times = g.Count()
-                            })
-                            .OrderBy(pick => pick.Times)
-                            .ToList();
-                
+                    .Select (pick => pick.HumanPick)
+                    .GroupBy (g => g)
+                    .Select (g => new PickTimes () {
+                        Pick = g.Key,
+                            Times = g.Count ()
+                    })
+                    .OrderBy (pick => pick.Times)
+                    .ToList ();
+
                 if (playerPicks[0].Times == playerPicks[1].Times && playerPicks[1].Times == playerPicks[2].Times) {
                     // Set pick, that will lose with previous player pick
-                    computerPick = GetLosingPick(GetLastPlayerPick());
+                    computerPick = GetLosingPick (GetLastPlayerPick ());
                 } else if (playerPicks[0].Times < playerPicks[1].Times) {
-                    computerPick = GetWinningPick(playerPicks[0].Pick);
+                    computerPick = GetWinningPick (playerPicks[0].Pick);
                 } else if (playerPicks[0].Times == playerPicks[1].Times) {
-                    computerPick = GetDrawOrWinningPick(playerPicks[0].Pick, playerPicks[1].Pick);
+                    computerPick = GetDrawOrWinningPick (playerPicks[0].Pick, playerPicks[1].Pick);
                 }
             }
             currentRound.ComputerPick = computerPick;
             currentRound.HumanPick = playerPick;
-            RoundEnd();
+            RoundEnd ();
             return computerPick;
         }
 
@@ -74,10 +74,10 @@ namespace RPS {
 
         #region Private methods
 
-        private void RoundEnd(){
-            if (currentRound.HumanPick == GetWinningPick(currentRound.ComputerPick))
+        private void RoundEnd () {
+            if (currentRound.HumanPick == GetWinningPick (currentRound.ComputerPick))
                 score.HumanScore++;
-            else if (currentRound.ComputerPick == GetWinningPick(currentRound.HumanPick))
+            else if (currentRound.ComputerPick == GetWinningPick (currentRound.HumanPick))
                 score.ComputerScore++;
             else {
                 // Draw. Do nothing
@@ -91,13 +91,13 @@ namespace RPS {
                 winner = Player.Human;
             }
 
-            Rounds.Add(currentRound);
-            currentRound = new Round();
+            Rounds.Add (currentRound);
+            currentRound = new Round ();
         }
 
-        private Pick GetLastPlayerPick() => rounds[rounds.Count - 1].HumanPick;
+        private Pick GetLastPlayerPick () => rounds[rounds.Count - 1].HumanPick;
 
-        private Pick GetLosingPick(Pick pick) {
+        private Pick GetLosingPick (Pick pick) {
             Pick losingPick;
             if (pick == Pick.Paper)
                 losingPick = Pick.Rock;
@@ -106,11 +106,11 @@ namespace RPS {
             else if (pick == Pick.Scissor)
                 losingPick = Pick.Paper;
             else
-                throw new NotImplementedException("Pick not recognized");
+                throw new NotImplementedException ("Pick not recognized");
             return losingPick;
         }
 
-        private Pick GetWinningPick(Pick pick) {
+        private Pick GetWinningPick (Pick pick) {
             Pick winningPick;
             if (pick == Pick.Paper)
                 winningPick = Pick.Scissor;
@@ -118,31 +118,31 @@ namespace RPS {
                 winningPick = Pick.Paper;
             else if (pick == Pick.Scissor)
                 winningPick = Pick.Rock;
-            else 
-                throw new NotImplementedException("Pick not implemented");
+            else
+                throw new NotImplementedException ("Pick not implemented");
             return winningPick;
         }
 
-        private Pick GetDrawOrWinningPick(Pick pick1, Pick pick2) {
+        private Pick GetDrawOrWinningPick (Pick pick1, Pick pick2) {
             Pick winningPick;
 
-            if (pick1 == GetWinningPick(pick2))
+            if (pick1 == GetWinningPick (pick2))
                 winningPick = pick1;
-            else 
+            else
                 winningPick = pick2;
             return winningPick;
         }
 
-        private Pick GetFirstRoundPick(){
+        private Pick GetFirstRoundPick () {
             Pick firstRoundPick;
-            var random = new Random();
-            var chance = random.Next(1, 101);
+            var random = new Random ();
+            var chance = random.Next (1, 101);
             // People mostly use rock or paper as first pick, so this is a counter for that.
             if (chance <= 40)
                 firstRoundPick = Pick.Paper;
             else if (chance > 40 && chance <= 70)
                 firstRoundPick = Pick.Rock;
-            else 
+            else
                 firstRoundPick = Pick.Scissor;
             return firstRoundPick;
         }
