@@ -34,24 +34,33 @@ namespace RPS {
             // First round
             if (rounds.Count == 0) {
                 computerPick = GetFirstRoundPick ();
-            } else {
+            } else
+            {
                 var playerPicks = rounds
-                    .Select (pick => pick.HumanPick)
-                    .GroupBy (g => g)
-                    .Select (g => new PickTimes () {
+                    .Select(pick => pick.HumanPick)
+                    .GroupBy(g => g)
+                    .Select(g => new PickTimes()
+                    {
                         Pick = g.Key,
-                            Times = g.Count ()
+                        Times = g.Count()
                     })
-                    .OrderBy (pick => pick.Times)
-                    .ToList ();
+                    .OrderBy(pick => pick.Times)
+                    .ToList();
 
-                if (playerPicks[0].Times == playerPicks[1].Times && playerPicks[1].Times == playerPicks[2].Times) {
+                PopulatePlayerPicks(playerPicks);
+
+                if (playerPicks[0].Times == playerPicks[1].Times && playerPicks[1].Times == playerPicks[2].Times)
+                {
                     // Set pick, that will lose with previous player pick
-                    computerPick = GetLosingPick (GetLastPlayerPick ());
-                } else if (playerPicks[0].Times < playerPicks[1].Times) {
-                    computerPick = GetWinningPick (playerPicks[0].Pick);
-                } else if (playerPicks[0].Times == playerPicks[1].Times) {
-                    computerPick = GetDrawOrWinningPick (playerPicks[0].Pick, playerPicks[1].Pick);
+                    computerPick = GetLosingPick(GetLastPlayerPick());
+                }
+                else if (playerPicks[0].Times < playerPicks[1].Times)
+                {
+                    computerPick = GetWinningPick(playerPicks[0].Pick);
+                }
+                else if (playerPicks[0].Times == playerPicks[1].Times)
+                {
+                    computerPick = GetDrawOrWinningPick(playerPicks[0].Pick, playerPicks[1].Pick);
                 }
             }
             currentRound = new Round ();
@@ -59,6 +68,15 @@ namespace RPS {
             currentRound.HumanPick = playerPick;
             RoundEnd ();
             return computerPick;
+        }
+
+        private static void PopulatePlayerPicks(List<PickTimes> playerPicks)
+        {
+            foreach (var pick in Enum.GetValues(typeof(Pick)).Cast<Pick>())
+            {
+                if (!playerPicks.Any(p => p.Pick == pick))
+                    playerPicks.Add(new PickTimes() { Pick = pick, Times = 0 });
+            }
         }
 
         #endregion
