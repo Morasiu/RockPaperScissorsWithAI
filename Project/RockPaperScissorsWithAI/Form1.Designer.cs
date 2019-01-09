@@ -42,16 +42,16 @@
             this.RoundCounter = new System.Windows.Forms.Label();
             this.RoundCounterText = new System.Windows.Forms.Label();
             this.PlayerPanel = new System.Windows.Forms.Panel();
-            this.ComputerPanel = new System.Windows.Forms.Panel();
-            this.ResetButton = new System.Windows.Forms.Button();
             this.PlayerPictureBox = new System.Windows.Forms.PictureBox();
+            this.ComputerPanel = new System.Windows.Forms.Panel();
             this.ComputerPictureBox = new System.Windows.Forms.PictureBox();
+            this.ButtonRestart = new System.Windows.Forms.Button();
             this.PlayerScorePanel.SuspendLayout();
             this.ComputerScorePanel.SuspendLayout();
             this.RoundCounterPanel.SuspendLayout();
             this.PlayerPanel.SuspendLayout();
-            this.ComputerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerPictureBox)).BeginInit();
+            this.ComputerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ComputerPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -198,26 +198,6 @@
             this.PlayerPanel.Size = new System.Drawing.Size(228, 200);
             this.PlayerPanel.TabIndex = 10;
             // 
-            // ComputerPanel
-            // 
-            this.ComputerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ComputerPanel.Controls.Add(this.ComputerPictureBox);
-            this.ComputerPanel.Location = new System.Drawing.Point(341, 81);
-            this.ComputerPanel.Name = "ComputerPanel";
-            this.ComputerPanel.Size = new System.Drawing.Size(228, 200);
-            this.ComputerPanel.TabIndex = 11;
-            // 
-            // ResetButton
-            // 
-            this.ResetButton.Font = new System.Drawing.Font("Lato", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResetButton.Location = new System.Drawing.Point(230, 12);
-            this.ResetButton.Name = "ResetButton";
-            this.ResetButton.Size = new System.Drawing.Size(117, 39);
-            this.ResetButton.TabIndex = 12;
-            this.ResetButton.Text = "RESTART";
-            this.ResetButton.UseVisualStyleBackColor = true;
-            this.ResetButton.Visible = false;
-            // 
             // PlayerPictureBox
             // 
             this.PlayerPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -232,6 +212,15 @@
             this.PlayerPictureBox.TabIndex = 0;
             this.PlayerPictureBox.TabStop = false;
             // 
+            // ComputerPanel
+            // 
+            this.ComputerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ComputerPanel.Controls.Add(this.ComputerPictureBox);
+            this.ComputerPanel.Location = new System.Drawing.Point(341, 81);
+            this.ComputerPanel.Name = "ComputerPanel";
+            this.ComputerPanel.Size = new System.Drawing.Size(228, 200);
+            this.ComputerPanel.TabIndex = 11;
+            // 
             // ComputerPictureBox
             // 
             this.ComputerPictureBox.BackColor = System.Drawing.Color.Transparent;
@@ -242,10 +231,22 @@
             this.ComputerPictureBox.TabIndex = 7;
             this.ComputerPictureBox.TabStop = false;
             // 
+            // ButtonRestart
+            // 
+            this.ButtonRestart.Font = new System.Drawing.Font("Lato", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonRestart.Location = new System.Drawing.Point(230, 12);
+            this.ButtonRestart.Name = "ButtonRestart";
+            this.ButtonRestart.Size = new System.Drawing.Size(117, 39);
+            this.ButtonRestart.TabIndex = 12;
+            this.ButtonRestart.Text = "RESTART";
+            this.ButtonRestart.UseVisualStyleBackColor = true;
+            this.ButtonRestart.Visible = false;
+            this.ButtonRestart.Click += new System.EventHandler(this.ButtonRestart_Click);
+            // 
             // RockPaperScissors
             // 
             this.ClientSize = new System.Drawing.Size(581, 450);
-            this.Controls.Add(this.ResetButton);
+            this.Controls.Add(this.ButtonRestart);
             this.Controls.Add(this.RoundCounterPanel);
             this.Controls.Add(this.ComputerScorePanel);
             this.Controls.Add(this.ScissorsButton);
@@ -262,8 +263,8 @@
             this.ComputerScorePanel.ResumeLayout(false);
             this.RoundCounterPanel.ResumeLayout(false);
             this.PlayerPanel.ResumeLayout(false);
-            this.ComputerPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PlayerPictureBox)).EndInit();
+            this.ComputerPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ComputerPictureBox)).EndInit();
             this.ResumeLayout(false);
 
@@ -288,7 +289,7 @@
         private System.Windows.Forms.Label RoundCounterText;
         private System.Windows.Forms.Panel PlayerPanel;
         private System.Windows.Forms.Panel ComputerPanel;
-        private System.Windows.Forms.Button ResetButton;
+        private System.Windows.Forms.Button ButtonRestart;
     }
 }
 

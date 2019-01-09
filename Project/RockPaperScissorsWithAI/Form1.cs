@@ -1,68 +1,69 @@
 ﻿using RPS;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RockPaperScissorsWithAI
 {
     public partial class RockPaperScissors : Form
     {
-        public RPSGame Game;
-        public Pick ComputerPick;
-        public Pick HumanPick;
-        public short CurrentRound;
-        public Round MatchRound;
+        #region Public contructors
 
         public RockPaperScissors()
         {
             InitializeComponent();
         }
 
+        #endregion
+
+        #region Private variables
+
+        private RPSGame Game;
+        private Pick ComputerPick;
+        private Pick HumanPick;
+        private byte RoundCount;
+
+        #endregion
+
+        #region Private methods
+
         private void ButtonStart_Click(object sender, EventArgs e)
         {
             GameStart();
         }
 
-        private void GameStart()
+        private void ButtonRestart_Click(object sender, EventArgs e)
         {
-            
-            MessageBox.Show("Choose your pick!");
-            StartButton.Visible = false;
-            ResetButton.Visible = true;
+            PlayerPictureBox.Image = null;
+            ComputerPictureBox.Image = null;
 
             RockButton.Enabled = true;
             PaperButton.Enabled = true;
             ScissorsButton.Enabled = true;
 
+            //Clear GUI
+            RoundCounter.Text = 0.ToString();
+            HumanScore.Text = 0.ToString();
+            ComputerScore.Text = 0.ToString();
+
+            //Create New RPSGame Instance
             Game = new RPSGame();
-            
         }
 
         private void RockButton_Click(object sender, EventArgs e)
-        {
-           ComputerPick =  Game.GetComputerPick(Pick.Rock);
-           HumanPick = Pick.Rock;
+        {     
+            ComputerPick = Game.GetComputerPick(Pick.Rock);
+            HumanPick = Pick.Rock;
 
-            PlayerPictureBox.Image = Properties.Resources.scissors;
+            SetRoundCount();
+            SetScore();
 
-            if (ComputerPick == Pick.Rock)
-                ComputerPictureBox.Image = Properties.Resources.scissors;
-            else if (ComputerPick == Pick.Rock)
-                ComputerPictureBox.Image = Properties.Resources.paper;
-            else
-                ComputerPictureBox.Image = Properties.Resources.rock;
+            PlayerPictureBox.Image = Properties.Resources.rock;
+            SetComputerPickPicture();
 
-            AddRound(MatchRound);
-            Game.RoundEnd();
-
-            HumanScore.Text = Game.Score.HumanScore.ToString();
-            ComputerScore.Text = Game.Score.ComputerScore.ToString();
+            if (Game.IsGameOver)
+            {
+                GameEnd();
+            }
         }
 
         private void PaperButton_Click(object sender, EventArgs e)
@@ -70,52 +71,94 @@ namespace RockPaperScissorsWithAI
             ComputerPick = Game.GetComputerPick(Pick.Paper);
             HumanPick = Pick.Paper;
 
-            PlayerPictureBox.Image = Properties.Resources.scissors;
+            SetRoundCount();
+            SetScore();
 
-            if (ComputerPick == Pick.Scissor)
-                ComputerPictureBox.Image = Properties.Resources.scissors;
-            else if (ComputerPick == Pick.Paper)
-                ComputerPictureBox.Image = Properties.Resources.paper;
-            else
-                ComputerPictureBox.Image = Properties.Resources.rock;
+            PlayerPictureBox.Image = Properties.Resources.paper;
+            SetComputerPickPicture();
 
-            AddRound(MatchRound);
-            Game.RoundEnd();
-
-            HumanScore.Text = Game.Score.HumanScore.ToString();
-            ComputerScore.Text = Game.Score.ComputerScore.ToString();
+            if (Game.IsGameOver)
+            {
+                GameEnd();
+            }
         }
 
         private void ScissorsButton_Click(object sender, EventArgs e)
         {
-
             ComputerPick = Game.GetComputerPick(Pick.Scissor);
             HumanPick = Pick.Scissor;
 
-            PlayerPictureBox.Image = Properties.Resources.scissors;
-            if (ComputerPick == Pick.Scissor)
-                ComputerPictureBox.Image = Properties.Resources.scissors;
-            else if (ComputerPick == Pick.Paper)
-                ComputerPictureBox.Image = Properties.Resources.paper;
-            else
-                ComputerPictureBox.Image = Properties.Resources.rock;
+            SetRoundCount();
+            SetScore();
 
-            AddRound(MatchRound);
-            Game.RoundEnd();  
-            
+            PlayerPictureBox.Image = Properties.Resources.scissors;
+            SetComputerPickPicture();
+
+            if (Game.IsGameOver)
+            {
+                GameEnd();
+            }
+        }
+
+
+        private void GameStart()
+        {
+            MessageBox.Show("Choose your pick!");
+
+            StartButton.Visible = false;
+            ButtonRestart.Visible = true;
+
+            RockButton.Enabled = true;
+            PaperButton.Enabled = true;
+            ScissorsButton.Enabled = true;
+
+            Game = new RPSGame();
+        }
+
+        private void GameEnd()
+        {
+            RockButton.Enabled = false;
+            PaperButton.Enabled = false;
+            ScissorsButton.Enabled = false;
+
+            if (Game.Score.HumanScore == 3)
+            {
+                MessageBox.Show("Game Has Ended. YOU WIN!");
+            }
+            else if(Game.Score.ComputerScore == 3)
+            {
+                MessageBox.Show("Game Has Ended. YOU LOSE!");
+            }        
+        }
+
+        private void SetComputerPickPicture()
+        {
+            switch (ComputerPick)
+            {
+                case Pick.Rock:
+                    ComputerPictureBox.Image = Properties.Resources.rock;
+                    break;
+                case Pick.Paper:
+                    ComputerPictureBox.Image = Properties.Resources.paper;
+                    break;
+                case Pick.Scissor:
+                    ComputerPictureBox.Image = Properties.Resources.scissors;
+                    break;
+            }
+        }
+
+        private void SetScore()
+        {
             HumanScore.Text = Game.Score.HumanScore.ToString();
             ComputerScore.Text = Game.Score.ComputerScore.ToString();
-
-
-            //TODO koniec gry (do 3) Game.Winner == Player.Computer;
-            //TODO wyswietlic na koncu historie rund
         }
 
-        private void AddRound(Round RoundToAdd)
+        private void SetRoundCount()
         {
-            CurrentRound += 1;
-            Game.Rounds.Add(RoundToAdd);
-            RoundCounter.Text = CurrentRound.ToString();
+            RoundCount = Convert.ToByte(Game.Rounds.Count);
+            RoundCounter.Text = RoundCount.ToString();
         }
+
+        #endregion
     }
 }
