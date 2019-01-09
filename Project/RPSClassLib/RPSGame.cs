@@ -54,6 +54,7 @@ namespace RPS {
                     computerPick = GetDrawOrWinningPick (playerPicks[0].Pick, playerPicks[1].Pick);
                 }
             }
+            currentRound = new Round ();
             currentRound.ComputerPick = computerPick;
             currentRound.HumanPick = playerPick;
             RoundEnd ();
@@ -92,7 +93,6 @@ namespace RPS {
             }
 
             rounds.Add (currentRound);
-            currentRound = new Round ();
         }
 
         private Pick GetLastPlayerPick () => rounds[rounds.Count - 1].HumanPick;
