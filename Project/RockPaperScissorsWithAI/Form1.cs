@@ -19,15 +19,6 @@ namespace RockPaperScissorsWithAI
 
         private RPSGame Game;
 
-        // Do kosza
-        private Pick ComputerPick;
-
-        //Używasz tego do czegoś? Nie, to zgadnij? Do kosza
-        private Pick HumanPick;
-
-        // Zaznacz i BackSpace
-        private byte RoundCount;
-
         #endregion
 
         #region Private methods
@@ -57,61 +48,46 @@ namespace RockPaperScissorsWithAI
 
         private void RockButton_Click(object sender, EventArgs e)
         {     
-            ComputerPick = Game.GetComputerPick(Pick.Rock);
-            HumanPick = Pick.Rock;
+            Game.GetComputerPick(Pick.Rock);
 
             SetRoundCount();
             SetScore();
 
             PlayerPictureBox.Image = Properties.Resources.rock;
-            SetComputerPickPicture();
-            
-            // Zrób z tego metodę GameOverCheck() czy coś zasiast powtarzać
-            if (Game.IsGameOver)
-            {
-                GameEnd();
-            }
+            SetComputerPickPicture(Pick.Rock);
+
+            GameOverCheck();
         }
 
         private void PaperButton_Click(object sender, EventArgs e)
         {
-            ComputerPick = Game.GetComputerPick(Pick.Paper);
-            HumanPick = Pick.Paper;
+             Game.GetComputerPick(Pick.Paper);
 
             SetRoundCount();
             SetScore();
 
             PlayerPictureBox.Image = Properties.Resources.paper;
-            SetComputerPickPicture();
+            SetComputerPickPicture(Pick.Paper);
 
-            if (Game.IsGameOver)
-            {
-                GameEnd();
-            }
+            GameOverCheck();
         }
 
         private void ScissorsButton_Click(object sender, EventArgs e)
         {
-            ComputerPick = Game.GetComputerPick(Pick.Scissor);
-            HumanPick = Pick.Scissor;
+            Game.GetComputerPick(Pick.Scissor);
 
             SetRoundCount();
             SetScore();
 
             PlayerPictureBox.Image = Properties.Resources.scissors;
-            SetComputerPickPicture();
+            SetComputerPickPicture(Pick.Scissor);
 
-            if (Game.IsGameOver)
-            {
-                GameEnd();
-            }
+            GameOverCheck();
         }
 
 
         private void GameStart()
         {
-            MessageBox.Show("Choose your pick!");
-
             StartButton.Visible = false;
             ButtonRestart.Visible = true; // <-- Error bejbe
 
@@ -122,30 +98,28 @@ namespace RockPaperScissorsWithAI
             Game = new RPSGame();
         }
 
-        private void GameEnd()
+        private void GameOverCheck()
         {
-            RockButton.Enabled = false;
-            PaperButton.Enabled = false;
-            ScissorsButton.Enabled = false;
-
-
-            // Po to jest Game.Winner!;
-            if (Game.Score.HumanScore == 3)
+            if (Game.IsGameOver)
             {
-                MessageBox.Show("Game Has Ended. YOU WIN!");
-            }
-            else if(Game.Score.ComputerScore == 3)
-            {
-                MessageBox.Show("Game Has Ended. YOU LOSE!");
-            }        
+                RockButton.Enabled = false;
+                PaperButton.Enabled = false;
+                ScissorsButton.Enabled = false;
+
+                if (Game.Winner == Player.Human)
+                {
+                    MessageBox.Show("Game Has Ended. YOU WIN!");
+                }
+                else if (Game.Winner == Player.Computer)
+                {
+                    MessageBox.Show("Game Has Ended. YOU LOSE!");
+                }
+            }            
         }
 
-        // Dodaj tutaj paramter:
-        // private void SetComputerPickPicture(Pick computerPick)
-        // i podstawie tego zmieniaj.
-        private void SetComputerPickPicture()
+        private void SetComputerPickPicture(Pick ComputerPickPicture)
         {
-            switch (ComputerPick)
+            switch (ComputerPickPicture)
             {
                 case Pick.Rock:
                     ComputerPictureBox.Image = Properties.Resources.rock;
@@ -167,13 +141,7 @@ namespace RockPaperScissorsWithAI
 
         private void SetRoundCount()
         {
-            RoundCount = Convert.ToByte(Game.Rounds.Count);
-
-            // Wtf? Why? Po prostu zrób:
-            //RoundCounter.Text = Game.Rounds.Count.ToString();
-
-            RoundCounter.Text = RoundCount.ToString();
-            
+            RoundCounter.Text = Game.Rounds.Count.ToString();           
         }
 
         #endregion
