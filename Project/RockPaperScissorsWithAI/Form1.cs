@@ -18,8 +18,14 @@ namespace RockPaperScissorsWithAI
         #region Private variables
 
         private RPSGame Game;
+
+        // Do kosza
         private Pick ComputerPick;
+
+        //Używasz tego do czegoś? Nie, to zgadnij? Do kosza
         private Pick HumanPick;
+
+        // Zaznacz i BackSpace
         private byte RoundCount;
 
         #endregion
@@ -59,7 +65,8 @@ namespace RockPaperScissorsWithAI
 
             PlayerPictureBox.Image = Properties.Resources.rock;
             SetComputerPickPicture();
-
+            
+            // Zrób z tego metodę GameOverCheck() czy coś zasiast powtarzać
             if (Game.IsGameOver)
             {
                 GameEnd();
@@ -106,7 +113,7 @@ namespace RockPaperScissorsWithAI
             MessageBox.Show("Choose your pick!");
 
             StartButton.Visible = false;
-            ButtonRestart.Visible = true;
+            ButtonRestart.Visible = true; // <-- Error bejbe
 
             RockButton.Enabled = true;
             PaperButton.Enabled = true;
@@ -121,6 +128,8 @@ namespace RockPaperScissorsWithAI
             PaperButton.Enabled = false;
             ScissorsButton.Enabled = false;
 
+
+            // Po to jest Game.Winner!;
             if (Game.Score.HumanScore == 3)
             {
                 MessageBox.Show("Game Has Ended. YOU WIN!");
@@ -131,6 +140,9 @@ namespace RockPaperScissorsWithAI
             }        
         }
 
+        // Dodaj tutaj paramter:
+        // private void SetComputerPickPicture(Pick computerPick)
+        // i podstawie tego zmieniaj.
         private void SetComputerPickPicture()
         {
             switch (ComputerPick)
@@ -156,7 +168,12 @@ namespace RockPaperScissorsWithAI
         private void SetRoundCount()
         {
             RoundCount = Convert.ToByte(Game.Rounds.Count);
+
+            // Wtf? Why? Po prostu zrób:
+            //RoundCounter.Text = Game.Rounds.Count.ToString();
+
             RoundCounter.Text = RoundCount.ToString();
+            
         }
 
         #endregion
