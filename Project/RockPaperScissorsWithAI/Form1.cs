@@ -47,40 +47,34 @@ namespace RockPaperScissorsWithAI
         }
 
         private void RockButton_Click(object sender, EventArgs e)
-        {     
-            Game.GetComputerPick(Pick.Rock);
+        {
+            SetComputerPickPicture(Game.GetComputerPick(Pick.Rock));
+            PlayerPictureBox.Image = Properties.Resources.rock;
 
             SetRoundCount();
             SetScore();
-
-            PlayerPictureBox.Image = Properties.Resources.rock;
-            SetComputerPickPicture(Pick.Rock);
 
             GameOverCheck();
         }
 
         private void PaperButton_Click(object sender, EventArgs e)
         {
-             Game.GetComputerPick(Pick.Paper);
+            SetComputerPickPicture(Game.GetComputerPick(Pick.Paper));
+            PlayerPictureBox.Image = Properties.Resources.paper;
 
             SetRoundCount();
             SetScore();
 
-            PlayerPictureBox.Image = Properties.Resources.paper;
-            SetComputerPickPicture(Pick.Paper);
-
-            GameOverCheck();
+            GameOverCheck(); ;
         }
 
         private void ScissorsButton_Click(object sender, EventArgs e)
         {
-            Game.GetComputerPick(Pick.Scissor);
+            SetComputerPickPicture(Game.GetComputerPick(Pick.Scissor));
+            PlayerPictureBox.Image = Properties.Resources.scissors;          
 
             SetRoundCount();
-            SetScore();
-
-            PlayerPictureBox.Image = Properties.Resources.scissors;
-            SetComputerPickPicture(Pick.Scissor);
+            SetScore();       
 
             GameOverCheck();
         }
