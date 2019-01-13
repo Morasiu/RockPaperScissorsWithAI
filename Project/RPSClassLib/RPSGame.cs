@@ -18,7 +18,7 @@ namespace RPS {
 
         public Score Score { get => score; }
         public List<Round> Rounds { get => rounds; }
-        public Round CurrentRound { get => currentRound; }
+        public Round CurrentRound { get => currentRound; } 
         public bool IsGameOver { get => isGameOver; }
         public Player Winner { get => winner; }
 
@@ -97,7 +97,7 @@ namespace RPS {
             if (currentRound.HumanPick == GetWinningPick (currentRound.ComputerPick))
                 score.HumanScore++;
             else if (currentRound.ComputerPick == GetWinningPick (currentRound.HumanPick))
-                score.ComputerScore++;
+                score.ComputerScore++; 
             else {
                 // Draw. Do nothing
             }
