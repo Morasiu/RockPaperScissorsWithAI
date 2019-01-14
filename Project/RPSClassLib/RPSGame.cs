@@ -30,7 +30,7 @@ namespace RPS {
             if (isGameOver)
                 throw new ApplicationException ("Game is over");
 
-            Pick computerPick = Pick.Paper;
+            Pick? computerPick = null;
             // First round
             if (rounds.Count == 0) {
                 computerPick = GetFirstRoundPick ();
@@ -49,25 +49,45 @@ namespace RPS {
 
                 PopulatePlayerPicks(playerPicks);
 
-                if (playerPicks[0].Times == playerPicks[1].Times && playerPicks[1].Times == playerPicks[2].Times)
+                if (AreAllPicksSameAmout(playerPicks))
                 {
                     // Set pick, that will lose with previous player pick
                     computerPick = GetLosingPick(GetLastPlayerPick());
                 }
-                else if (playerPicks[0].Times < playerPicks[1].Times)
+                else if (IsPickWithTheSmallestPickTimes(playerPicks))
                 {
                     computerPick = GetWinningPick(playerPicks[0].Pick);
                 }
-                else if (playerPicks[0].Times == playerPicks[1].Times)
+                else if (AreTwoSmallestPicksSameAmount(playerPicks))
                 {
-                    computerPick = GetDrawOrWinningPick(playerPicks[0].Pick, playerPicks[1].Pick);
+                    computerPick = GetDrawOrWinningPick(playerPicks[1].Pick, playerPicks[2].Pick);
                 }
             }
-            currentRound = new Round ();
-            currentRound.ComputerPick = computerPick;
-            currentRound.HumanPick = playerPick;
+
+            if (computerPick == null)
+                throw new NotImplementedException("Algorythm couln't choose right pick.");
+
+            currentRound = new Round {
+                ComputerPick = (Pick)computerPick,
+                HumanPick = playerPick
+            };
             RoundEnd ();
-            return computerPick;
+            return (Pick) computerPick;
+        }
+
+        private static bool AreTwoSmallestPicksSameAmount(List<PickTimes> playerPicks)
+        {
+            return playerPicks[1].Times == playerPicks[2].Times;
+        }
+
+        private static bool IsPickWithTheSmallestPickTimes(List<PickTimes> playerPicks)
+        {
+            return playerPicks[2].Times < playerPicks[1].Times;
+        }
+
+        private static bool AreAllPicksSameAmout(List<PickTimes> playerPicks)
+        {
+            return playerPicks[0].Times == playerPicks[1].Times && playerPicks[1].Times == playerPicks[2].Times;
         }
 
         private static void PopulatePlayerPicks(List<PickTimes> playerPicks)

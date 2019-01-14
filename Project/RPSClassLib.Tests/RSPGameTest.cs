@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using RPSClassLib;
+﻿using Xunit;
 using RPS;
 
 namespace RPSClassLib.Tests
@@ -64,8 +58,6 @@ namespace RPSClassLib.Tests
             }
 
             Assert.Equal(expectedWinner, winner);
-            
-            
         }
 
         [Fact]
@@ -77,10 +69,6 @@ namespace RPSClassLib.Tests
              computerPick = rpsGame.GetComputerPick(playerPick);
 
             Assert.Equal(Pick.Rock, computerPick);
-
-
         }
-
-
     }
 }
