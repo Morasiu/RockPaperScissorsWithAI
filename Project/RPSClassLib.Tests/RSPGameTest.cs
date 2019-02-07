@@ -7,7 +7,6 @@ namespace RPSClassLib.Tests
 {
     public class RSPGameTest
     {
-		// Ładny test, chyba mój
         [Fact]
         public void Score_FirstRound_ShouldHasCorrectScore()
         {
@@ -35,53 +34,26 @@ namespace RPSClassLib.Tests
             Assert.Equal(expectedScore.HumanScore, rpsGame.Score.HumanScore);
             Assert.Equal(expectedScore.ComputerScore, rpsGame.Score.ComputerScore);
         }
+	
 
-		// "ShouldReturnRoundProperRoundValue"
-		// Round and Round
-		// https://www.youtube.com/watch?v=0u8teXR8VE4
-		// -> (...)_ShouldReturnProperRoundCount
 		[Fact]
-        public void Rounds_ThirdRound_ShouldReturnRoundProperRoundValue()
+        public void Rounds_ThirdRound_ShouldReturnProperRoundValue()
         {
             var rpsGame = new RPSGame();
             var playerPick = Pick.Paper;
-            var eachRound = rpsGame.GetComputerPick(playerPick);
-            eachRound = rpsGame.GetComputerPick(playerPick);
-            eachRound = rpsGame.GetComputerPick(playerPick);
 
-			// magia, można zrobić po prostu wywołanie metody, bez przypisania
-			// rpsGame.GetComputerPick(playerPick);
-			// rpsGame.GetComputerPick(playerPick);
-			// rpsGame.GetComputerPick(playerPick);
+            int expectedRoundCount = 3;
+              for(int i = 0; i < expectedRoundCount; i++)
+              	rpsGame.GetComputerPick(playerPick);
 
-			// Najlepiej użyć tego
-			//int expectedRoundCount = 3;
-			//for(int i = 0; i < expectedRoundCount; i++) {
-			//	rpsGame.GetComputerPick(playerPick);
-			//}
-			// i spójność danych zachowana
+            int gamePlayCount = rpsGame.Rounds.Count;
 
-
-			// eee... to nie dżawa. Zrób gamePlayCount = 0;
-			int gamePlayCount = new int();
-
-			// Do kosza?
-            foreach (var round in rpsGame.Rounds)
-            {
-                gamePlayCount++;
-            }
-
-			// what?
-			// Okej... zamiast tego polecam użyć
-			// var expectedRoundCount = 3;
-            var howManyRounds = rpsGame.Rounds.Count;
-
-            Assert.Equal(gamePlayCount, howManyRounds);
+            Assert.Equal(gamePlayCount, expectedRoundCount);
         }
 
-		// Ładny test. Nie ma się do czego przyczepić.
+
         [Fact]
-        public void Winner_TestRoundFirst_ShouldReturnWinner()
+        public void RoundClassWinner_TestRoundFirst_ShouldReturnWinner()
         {
             var rpsGame = new RPSGame();
             var playerPick = Pick.Paper;
@@ -107,24 +79,24 @@ namespace RPSClassLib.Tests
             Assert.Equal(expectedWinner, winner);
         }
 
-		// Ten też spoko 
+
         [Fact]
         public void GetComputerPick_SecondRound_ShouldReturnRock()
         {
             var rpsGame = new RPSGame();
             var playerPick = Pick.Paper;
-			// Przypominam, że można zrobić po prostu wywołanie, bez przypisania do zmiennej
-			// rpsGame.GetComputerPick(playerPick);
-			var computerPick = rpsGame.GetComputerPick(playerPick);
-            computerPick = rpsGame.GetComputerPick(playerPick);
 
-			// Żeby było ładnie można zrobić
-			// Pick expectedPick = Pick.Rock;
-			// i potem jest użyć niżej.
-            Assert.Equal(Pick.Rock, computerPick);
+			var computerPick = rpsGame.GetComputerPick(playerPick);
+
+            computerPick = rpsGame.GetComputerPick(playerPick); //Konieczne wydaje się przypisanie do zmiennej 
+                                                                //z powodu użycia jej w Assercie.
+
+			Pick expectedPick = Pick.Rock;
+	
+            Assert.Equal(expectedPick, computerPick);
         }
 
-		// Ładnie. Obszedłeś randomowy wybór na początku :) 
+
         [Fact]
         public void CurrentRound_SecondRound_ShouldReturnOppositePick()
         {
@@ -133,17 +105,15 @@ namespace RPSClassLib.Tests
             var eachRound = rpsGame.GetComputerPick(playerPick);
             eachRound = rpsGame.GetComputerPick(playerPick);
 
-			// -> computerPick
-            var currentRound = rpsGame.CurrentRound.ComputerPick;
+            var computerPick = rpsGame.CurrentRound.ComputerPick;
 
-            Assert.NotEqual(playerPick, currentRound);
+            Assert.NotEqual(playerPick, computerPick);
+
         }
 
-		// Szalony test. Ale działa
-		// Tylko nazwa słaba
-		// IsGameOver_GetComputerPickAfterGameOver_ShouldThrowApplicationException
-		[Fact]
-        public void IsGameOver()
+
+        [Fact]
+        public void IsGameOver_GetComputerPickAfterGameOver_ShouldThrowApplicationException()
         {
             var rpsGame = new RPSGame();
             var playerPick = Pick.Paper;
@@ -153,39 +123,89 @@ namespace RPSClassLib.Tests
             {
                 computerPick = rpsGame.GetComputerPick(playerPick);
             }
-			// Eee... Użyj tego, bo tamto boli:
-			// !rpsGame.IsGameOver
-			// Ps. to drugi poziom mema https://pics.me.me/if-condition-f-if-conditiontrue-if-condition-true-66-condition-37268147.png
-			while(rpsGame.IsGameOver != true);
 
-			// Nawet assert wyjątku zrobiłeś. Nieźle
-			// Można też zrobić tak:
-			//Action getPickAfterGameOver = () => rpsGame.GetComputerPick(playerPick);
-			// To tylko zmienna. Nic się tam nie wykonuje jeszcze. Potem dajesz ją do tego asserta.
-			//Assert.Throws<ApplicationException>(getPickAfterGameOver);
+            while (!rpsGame.IsGameOver);
 
-			Assert.Throws<ApplicationException>(() => rpsGame.GetComputerPick(playerPick));
+			Action getPickAfterGameOver = () => rpsGame.GetComputerPick(playerPick);
+
+			Assert.Throws<ApplicationException>(getPickAfterGameOver);
+
         }
 
-		// Co to jest? Do kosza to
-        public static IEnumerable<object[]> enumValues()
+        [Fact]
+        public void RPSGameClassWinner_TestRound_CheckingIfSomeoneWins()
         {
-            foreach (var player in Enum.GetValues(typeof(Player)))
-                yield return new object[] { player };
+            var rpsGame = new RPSGame();
+            var playerPick = Pick.Rock;
+            var computerPick = rpsGame.GetComputerPick(playerPick);
+            var winner = rpsGame.Winner;
+            var win = false;
 
+            do
+            {
+                computerPick = rpsGame.GetComputerPick(playerPick);
+            }
+            while (!rpsGame.IsGameOver);
+
+            if (winner == Player.Computer | winner == Player.Human)
+                win = true;
+
+            Assert.True(win);
         }
 
-		// Do kosza. Enumów się nie testuje raczej.
-        [Theory]
-        [MemberData(nameof(enumValues))]
-        public void Player_TestRound_EnumShouldBeSetToProperNumber(Player player)
+
+        [Fact]
+        public void GetComputerPick_ThirdRound_ShouldReturnLosingWithLastPick()
         {
-            Assert.NotNull(player);
+            var rpsGame = new RPSGame();
+            var computerPick = rpsGame.GetComputerPick(Pick.Paper);
+                               rpsGame.GetComputerPick(Pick.Rock);
+                computerPick = rpsGame.GetComputerPick(Pick.Scissor);
+
+            Assert.Equal(Pick.Paper, computerPick);
+
         }
 
-		// Podsumowanie:
-		// Ogólnie spoko. Kilka spoko testów. Małe błędy, ale ok.
-		// Przyda sie więcej testów. Im więcej tym lepiej!
+
+        [Fact]
+        public void GetComputerPick_TestRounds_ShouldReturnLosingWithLessFrequentlyChoosenPick()
+        {
+            var rpsGame = new RPSGame();
+            var computerPick = rpsGame.GetComputerPick(Pick.Rock);
+                               rpsGame.GetComputerPick(Pick.Rock);
+                computerPick = rpsGame.GetComputerPick(Pick.Paper);
+
+            Assert.Equal(Pick.Rock, computerPick);
+
+        }
+
+
+        [Fact]
+        public void GetComputerPick_TestRounds_ShouldReturnLosingOrDrawingWithLessFrequentlyChoosenPicks()
+        {
+            var rpsGame = new RPSGame();
+            var computerPick = rpsGame.GetComputerPick(Pick.Rock);
+                               rpsGame.GetComputerPick(Pick.Rock);
+                               rpsGame.GetComputerPick(Pick.Paper);
+                computerPick = rpsGame.GetComputerPick(Pick.Scissor);
+
+            Assert.Equal(Pick.Scissor, computerPick);
+
+        }
+
+        [Fact]
+        public void GetComputerPick_TestRound_MethodShouldntReturnComputerPickAsANull()
+        {
+            var rpsGame = new RPSGame();
+            var playerPick = Pick.Rock;
+            var computerPick = rpsGame.GetComputerPick(playerPick);
+            rpsGame.GetComputerPick(playerPick);
+            rpsGame.GetComputerPick(playerPick);
+            Pick? nullPick = null;
+
+            Assert.NotEqual(nullPick, computerPick);
+
+        }
 
     }
 }
