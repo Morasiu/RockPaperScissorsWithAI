@@ -44,7 +44,7 @@ namespace RPS {
                         Pick = g.Key,
                         Times = g.Count()
                     })
-                    .OrderBy(pick => pick.Times)
+                    .OrderByDescending(pick => pick.Times)
                     .ToList();
 
                 PopulatePlayerPicks(playerPicks);
