@@ -56,7 +56,7 @@ namespace RPS {
                 }
                 else if (IsPickWithTheSmallestPickTimes(playerPicks))
                 {
-                    computerPick = GetWinningPick(playerPicks[0].Pick);
+                    computerPick = GetWinningPick(playerPicks[2].Pick);
                 }
                 else if (AreTwoSmallestPicksSameAmount(playerPicks))
                 {
