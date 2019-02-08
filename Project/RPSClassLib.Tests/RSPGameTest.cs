@@ -13,7 +13,6 @@ namespace RPSClassLib.Tests
             var rpsGame = new RPSGame();
             var playerPick = Pick.Paper;
             var computerPick = rpsGame.GetComputerPick(playerPick);
-            var winner = rpsGame.Rounds[0].Winner; // Nigdzie nie użyte
             var expectedScore = new Score();
 
             if (playerPick == computerPick)
@@ -48,9 +47,7 @@ namespace RPSClassLib.Tests
 
             int gamePlayCount = rpsGame.Rounds.Count;
 
-			// Najpierw jest podawane to czego sie spodziewamy:
-			// Assert.Equal(expectedRoundCount, gamePlayCount);
-			Assert.Equal(gamePlayCount, expectedRoundCount);
+			Assert.Equal(expectedRoundCount, gamePlayCount);
 
 		}
 
@@ -89,14 +86,9 @@ namespace RPSClassLib.Tests
             var rpsGame = new RPSGame();
             var playerPick = Pick.Paper;
 
-			// Można przypisać tylko drugą rudnę robiąc tak:
-			//rpsGame.GetComputerPick(playerPick)
-			//var computerPick = rpsGame.GetComputerPick(playerPick);
+            rpsGame.GetComputerPick(playerPick);
 
 			var computerPick = rpsGame.GetComputerPick(playerPick);
-
-            computerPick = rpsGame.GetComputerPick(playerPick); //Konieczne wydaje się przypisanie do zmiennej 
-                                                                //z powodu użycia jej w Assercie.
 
 			Pick expectedPick = Pick.Rock;
 	
@@ -109,9 +101,10 @@ namespace RPSClassLib.Tests
         {
             var rpsGame = new RPSGame();
             var playerPick = Pick.Paper;
-			// Tak samo jak wyżej
+
+            rpsGame.GetComputerPick(playerPick);
+
             var eachRound = rpsGame.GetComputerPick(playerPick);
-            eachRound = rpsGame.GetComputerPick(playerPick);
 
             var computerPick = rpsGame.CurrentRound.ComputerPick;
 
@@ -128,7 +121,7 @@ namespace RPSClassLib.Tests
 
             do
             {
-                computerPick = rpsGame.GetComputerPick(playerPick);
+                rpsGame.GetComputerPick(playerPick);
             }
 
             while (!rpsGame.IsGameOver);
@@ -144,23 +137,28 @@ namespace RPSClassLib.Tests
             var rpsGame = new RPSGame();
             var playerPick = Pick.Rock;
             var computerPick = rpsGame.GetComputerPick(playerPick);
-            var winner = rpsGame.Winner;
-            var win = false;
+            var expectedWinner = rpsGame.Winner;
+            var score = new Score();
+            Player winner = new Player();
 
             do
             {
-                computerPick = rpsGame.GetComputerPick(playerPick);
+                rpsGame.GetComputerPick(playerPick);
             }
             while (!rpsGame.IsGameOver);
 
-			// Co?
-			// Sprawdzaj kto ma 3 punkty przy użyciu
-			//rpsGame.Score;
-			// I potem sprawdź czy Winner to jest ta osoba z 3 punktami
-            if (winner == Player.Computer | winner == Player.Human)
-                win = true;
+            if (score.HumanScore == 3)
+            {
+                winner = Player.Human;
+            }
+            else if (score.ComputerScore == 3)
+            {
+                winner = Player.Computer;
+            }
+           
 
-            Assert.True(win);
+            Assert.Equal(expectedWinner, winner);
+
         }
 
 
@@ -170,8 +168,9 @@ namespace RPSClassLib.Tests
             var rpsGame = new RPSGame();
             var computerPick = rpsGame.GetComputerPick(Pick.Paper);
                                rpsGame.GetComputerPick(Pick.Rock);
+                               rpsGame.GetComputerPick(Pick.Scissor);
                 computerPick = rpsGame.GetComputerPick(Pick.Scissor);
-			// eee.. Dodaj jeszcze jedną rudnę i dopiero sprawdzaj. AI bierze tylko picki, które już były, a tutaj były dopiero 2
+
 			Assert.Equal(Pick.Paper, computerPick);
         }
 
@@ -182,8 +181,9 @@ namespace RPSClassLib.Tests
             var rpsGame = new RPSGame();
             var computerPick = rpsGame.GetComputerPick(Pick.Rock);
                                rpsGame.GetComputerPick(Pick.Rock);
-			computerPick = rpsGame.GetComputerPick(Pick.Paper);
-			// eee.. Dodaj jeszcze jedną rudnę i dopiero sprawdzaj. AI bierze tylko picki, które już były, a tutaj były dopiero 2
+                               rpsGame.GetComputerPick(Pick.Paper);
+			    computerPick = rpsGame.GetComputerPick(Pick.Paper);
+
 			Assert.Equal(Pick.Rock, computerPick);
         }
 
@@ -195,17 +195,15 @@ namespace RPSClassLib.Tests
             var computerPick = rpsGame.GetComputerPick(Pick.Rock);
                                rpsGame.GetComputerPick(Pick.Rock);
                                rpsGame.GetComputerPick(Pick.Paper);
+                               rpsGame.GetComputerPick(Pick.Scissor);
                 computerPick = rpsGame.GetComputerPick(Pick.Scissor);
-			// eee.. Dodaj jeszcze jedną rudnę i dopiero sprawdzaj. AI bierze tylko picki, które już były, a tutaj były dopiero 2
 
 			Assert.Equal(Pick.Scissor, computerPick);
         }
 
-		// Chyba nie jako null
-		//_MethodShouldntReturnComputerPickAs->Not<-Null
-		// i bez Method
+
 		[Fact]
-        public void GetComputerPick_TestRound_MethodShouldntReturnComputerPickAsANull()
+        public void GetComputerPick_TestRound_ShouldntReturnComputerPickAsANull()
         {
 
             var rpsGame = new RPSGame();
