@@ -7,6 +7,7 @@
 		<MediaTemplate />
 
 		<Feature Id="ProductFeature" Title="RockPaperScissors With AI" Level="1">
+			<ComponentRef Id="DesktopShortcut" />
 			<ComponentGroupRef Id="ProductComponents" />
 		</Feature>
 	</Product>
@@ -15,6 +16,7 @@
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
 				<Directory Id="INSTALLFOLDER" Name="RockPaperScissorsWithAI" />
+				<Directory Id="DesktopFolder" Name="Desktop"/>
 			</Directory>
 		</Directory>
 	</Fragment>
@@ -30,4 +32,25 @@
 
 		</ComponentGroup>
 	</Fragment>
+
+	<Fragment>
+		<Component Id="DesktopShortcut" Directory="INSTALLFOLDER" Guid="*">
+			<RegistryValue Id="RegShortcutDesktop"
+					Root="HKCU"
+					Key="Software\Company\RockPaperScissorsWithAI"
+					Name="DesktopSC"
+					Value="1"
+					Type="integer"
+					KeyPath="yes" />
+
+			<Shortcut Id="desktopSC"
+					Target="[INSTALLFOLDER]RockPaperScissorsWithAI.exe"
+					WorkingDirectory="INSTALLFOLDER"
+					
+					Directory="DesktopFolder"
+					Name="Rock Paper Scissors With AI"
+					Advertise="no"/>
+		</Component>
+	</Fragment>
+
 </Wix>
