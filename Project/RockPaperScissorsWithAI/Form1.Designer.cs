@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RockPaperScissors));
             this.StartButton = new System.Windows.Forms.Button();
             this.RockButton = new System.Windows.Forms.Button();
             this.PaperButton = new System.Windows.Forms.Button();
@@ -257,7 +258,11 @@
             this.Controls.Add(this.PlayerPanel);
             this.Controls.Add(this.ComputerPanel);
             this.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "RockPaperScissors";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rock, Paper, Scissors";
             this.PlayerScorePanel.ResumeLayout(false);
             this.ComputerScorePanel.ResumeLayout(false);
